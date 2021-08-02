@@ -22,7 +22,7 @@ class WordCountSerializer(serializers.ModelSerializer):
 
 
 class ScrapeSerializer(serializers.ModelSerializer):
-    words = WordCountSerializer(many=True)
+    words = WordCountSerializer(many=True, read_only=True)
 
     class Meta:
         model = Scrape
