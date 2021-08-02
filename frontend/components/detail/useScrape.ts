@@ -10,7 +10,7 @@ interface IScrapeResponse {
 }
 
 export function useScrape(id): IScrapeResponse {
-  const { data, error } = useSWR(`${API_URL}/scrapes/${id}`, fetcher);
+  const { data, error } = useSWR(id && `${API_URL}/scrapes/${id}`, fetcher);
 
   return {
     scrape: data as IScrape | null,

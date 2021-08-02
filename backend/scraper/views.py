@@ -1,3 +1,4 @@
+from django.db.models import Prefetch
 from rest_framework import mixins, viewsets, status
 from rest_framework.response import Response
 
@@ -13,7 +14,13 @@ class ScrapeViewSet(
     viewsets.GenericViewSet,
 ):
     serializer_class = ScrapeSerializer
-    queryset = Scrape.objects.all().order_by("-created_at")
+    queryset = (
+        Scrape.objects.all()
+        .order_by("-created_at")
+        .prefetch_related(
+            Prefetch("words", queryset=WordCount.objects.order_by("-count"))
+        )
+    )
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
