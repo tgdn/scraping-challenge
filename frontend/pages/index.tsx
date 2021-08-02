@@ -1,4 +1,5 @@
 import Container from "@/components/container";
+import HomeView from "@/components/home";
 import Layout from "@/components/layout";
 import Head from "next/head";
 
@@ -8,7 +9,9 @@ function Home() {
       <Head>
         <title>Nate - Challenge</title>
       </Head>
-      <Container></Container>
+      <Container>
+        <HomeView />
+      </Container>
     </Layout>
   );
 }
