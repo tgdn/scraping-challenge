@@ -47,8 +47,6 @@ services:
     container_name: frontend
     volumes:
       - ./frontend:/app
-    depends_on:
-      - django
     ports:
       - "3000:3000"
     command: >
