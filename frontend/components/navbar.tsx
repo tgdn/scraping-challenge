@@ -19,9 +19,11 @@ export default function Navbar() {
                 <div className="w-full flex items-center">
                   {/* logo */}
                   <div className="flex-shrink-0">
-                    <span className="font-mono font-bold text-primary-500 text-xl">
-                      Nate: Challenge
-                    </span>
+                    <Link href="/">
+                      <a className="font-mono font-bold text-xl hover:text-blue-500">
+                        Nate: Challenge
+                      </a>
+                    </Link>
                   </div>
                   {/* search */}
                   <div className="hidden md:block ml-10 w-full">

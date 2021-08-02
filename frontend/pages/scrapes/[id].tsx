@@ -8,7 +8,7 @@ function Home() {
       <Head>
         <title>Nate - Challenge / Detail</title>
       </Head>
-      <Container>Detail</Container>
+      <Container></Container>
     </Layout>
   );
 }

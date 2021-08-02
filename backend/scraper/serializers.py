@@ -12,6 +12,7 @@ class ScrapeSerializer(serializers.ModelSerializer):
             "words",
             "created_at",
             "completed_at",
+            "error",
         ]
 
         read_only_fields = [
@@ -19,6 +20,7 @@ class ScrapeSerializer(serializers.ModelSerializer):
             "words",
             "created_at",
             "completed_at",
+            "error",
         ]
 
 
