@@ -15,7 +15,7 @@ class Scrape(models.Model):
         counts = Counter((x.rstrip(punctuation).lower() for x in text.split()))
         objs = [
             WordCount(word=word, count=count, scrape=self)
-            for word, count in counts
+            for (word, count) in counts.items()
         ]
         # insert in bulk to avoid having too many queries
         WordCount.objects.bulk_create(objs)
@@ -25,5 +25,5 @@ class WordCount(models.Model):
     scrape = models.ForeignKey(
         Scrape, on_delete=models.CASCADE, related_name="words"
     )
-    word = models.CharField(max_length=50)
+    word = models.CharField(max_length=200)
     count = models.BigIntegerField()

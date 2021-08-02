@@ -69,13 +69,18 @@ export default function HistoryView() {
                               "px-2 inline-flex text-xs leading-5 font-semibold rounded-full ",
                               {
                                 "bg-green-100 text-green-800":
-                                  !!row.completed_at,
+                                  !!row.completed_at && !row.error,
                                 "bg-yellow-100 text-yellow-800":
-                                  !row.completed_at,
+                                  !row.completed_at && !row.error,
+                                "bg-red-100 text-red-800": row.error,
                               }
                             )}
                           >
-                            {row.completed_at ? "Completed" : "Pending"}
+                            {row.error
+                              ? "Error"
+                              : row.completed_at
+                              ? "Succeeded"
+                              : "Pending"}
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
