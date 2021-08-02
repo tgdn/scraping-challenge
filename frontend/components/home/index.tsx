@@ -1,5 +1,6 @@
 import { API_URL } from "@/lib/constants";
 import fetcher from "@/lib/fetcher";
+import { IScrape } from "@/types/scrape";
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
 
@@ -11,13 +12,14 @@ export default function HomeView() {
     if (!input) return;
 
     try {
-      const resp = await fetcher(`${API_URL}/scrapes/`, {
+      const resp = await (fetcher(`${API_URL}/scrapes/`, {
         method: "POST",
         data: { url: input },
-      });
+      }) as Promise<IScrape>);
       router.push(`/scrapes/${resp.id}`);
     } catch (err) {
       console.log(err);
+      // TODO: handle error
     }
   };
 

@@ -1,4 +1,5 @@
 export interface IScrape {
+  id: number;
   url: string;
   created_at: string;
   completed_at?: string;
@@ -6,6 +7,7 @@ export interface IScrape {
 }
 
 export interface IWordCount {
+  id: number;
   scrape?: any;
   word: string;
   count: number;

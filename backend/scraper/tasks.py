@@ -18,6 +18,7 @@ def scrape(scrape_id: int):
 
     try:
         text = scrape_page(obj.url)
+        logger.info(f"Received text from {obj.url}")
         obj.count_words(text)
     except Exception as e:
         obj.error = True

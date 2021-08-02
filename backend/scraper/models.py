@@ -1,3 +1,6 @@
+from string import punctuation
+from collections import Counter
+
 from django.db import models
 
 
@@ -8,7 +11,14 @@ class Scrape(models.Model):
     error = models.BooleanField(default=False, null=False)
 
     def count_words(self, text: str):
-        pass
+        """A method that counts words and saves their occurence"""
+        counts = Counter((x.rstrip(punctuation).lower() for x in text.split()))
+        objs = [
+            WordCount(word=word, count=count, scrape=self)
+            for word, count in counts
+        ]
+        # insert in bulk to avoid having too many queries
+        WordCount.objects.bulk_create(objs)
 
 
 class WordCount(models.Model):
