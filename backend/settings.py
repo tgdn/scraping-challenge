@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+from corsheaders.defaults import default_methods
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     "rest_framework",
     "backend.scraper",
 ]
@@ -46,6 +49,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -54,6 +58,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "backend.urls"
+
+CORS_ALLOW_METHODS = list(default_methods)
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = []
+if DEBUG:
+    CORS_ORIGIN_WHITELIST += [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
 
 TEMPLATES = [
     {

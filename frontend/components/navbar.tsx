@@ -5,7 +5,7 @@ import Container from "./container";
 
 const navigation = [
   { url: "/", label: "Search" },
-  { url: "/history", label: "History" },
+  { url: "/scrapes", label: "History" },
 ];
 
 export default function Navbar() {
