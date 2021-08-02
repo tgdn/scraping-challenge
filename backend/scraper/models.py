@@ -7,6 +7,9 @@ class Scrape(models.Model):
     completed_at = models.DateTimeField(null=True, blank=False)
     error = models.BooleanField(default=False, null=False)
 
+    def count_words(self, text: str):
+        pass
+
 
 class WordCount(models.Model):
     scrape = models.ForeignKey(
