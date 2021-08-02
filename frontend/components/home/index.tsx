@@ -1,9 +1,11 @@
 import { API_URL } from "@/lib/constants";
 import fetcher from "@/lib/fetcher";
+import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
 
 export default function HomeView() {
   const [input, setInput] = useState("");
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input) return;
@@ -13,6 +15,7 @@ export default function HomeView() {
         method: "POST",
         data: { url: input },
       });
+      router.push(`/scrapes/${resp.id}`);
     } catch (err) {
       console.log(err);
     }
